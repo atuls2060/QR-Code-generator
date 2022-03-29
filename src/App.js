@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import SectionA from "./components/SectionA";
+import SectionB from "./components/SectionB";
 
 function App() {
+  const [colors, setColors] = useState({
+    bgColor: "#ffffff",
+    fgColor: "#000000",
+  });
+  const [size, setSize] = useState(200);
+  const [url, setUrl] = useState("");
+
+  function generate(colors, size, url) {
+    //got these values from section A
+    setColors(colors);
+    setSize(size);
+    setUrl(url);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="home">
+        <SectionA generate={generate} />
+        <SectionB colors={colors} size={size} url={url} />
+      </div>
+    </>
   );
 }
 
